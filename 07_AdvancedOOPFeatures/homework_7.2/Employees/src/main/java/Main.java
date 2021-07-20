@@ -1,7 +1,5 @@
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Stream;
+import java.util.*;
+
 
 public class Main {
 
@@ -14,11 +12,9 @@ public class Main {
     }
 
     public static Employee findEmployeeWithHighestSalary(List<Employee> staff, int year) {
-        Stream<Employee> stream = staff.stream();
-        stream.sorted(Comparator.comparing(Employee ::getWorkStart)).max(Comparator.comparing(Employee ::getSalary))
-                .ifPresent(System.out::println);
-        //TODO Метод должен вернуть сотрудника с максимальной зарплатой среди тех,
-        // кто пришёл в году, указанном в переменной year
-        return null;
+        String str = Integer.toString(year);
+        Employee employee = staff.stream().filter(e -> e.getWorkStart().toString().contains(str))
+                .max(Comparator.comparing(Employee::getSalary)).get();
+        return employee;
     }
 }

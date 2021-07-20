@@ -1,9 +1,9 @@
 import com.skillbox.airport.Airport;
 import com.skillbox.airport.Flight;
-import net.sf.saxon.functions.DynamicContextAccessor;
+import com.skillbox.airport.Terminal;
 
 import java.util.*;
-import java.util.stream.Stream;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,10 +12,14 @@ public class Main {
     }
 
     public static List<Flight> findPlanesLeavingInTheNextTwoHours(Airport airport) {
+        List<Terminal> terminals = airport.getTerminals();
+        double timer = 7.2e+6;
         List<Flight> flights = new ArrayList<>();
-        flights.addAll(flights.stream().filter(Flight ::getDate = new Date()));
-        //TODO Метод должден вернуть список рейсов вылетающих в ближайшие два часа.
+        for (int i = 0; i < terminals.size(); i++) {
+            flights.addAll(terminals.get(i).getFlights().stream().filter(t -> t.getType().equals(Flight.Type.DEPARTURE))
+                    .filter(d -> d.getDate().getTime() <= (new Date()).getTime() + timer)
+                    .collect(Collectors.toList()));
+        }
         return flights;
     }
-
 }
