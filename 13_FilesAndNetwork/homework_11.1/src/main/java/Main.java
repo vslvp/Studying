@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         while (true) {
+
             Scanner scanner = new Scanner(System.in);
             String path = scanner.nextLine();
             File folder = new File(path);
@@ -12,7 +13,6 @@ public class Main {
                 System.out.println(file);
             }
             System.out.println(path + " " + "Size is" + " " + FileUtils.calculateFolderSize(path) + " " + "bytes");
-
         }
     }
 }
